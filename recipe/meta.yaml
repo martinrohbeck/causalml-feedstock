@@ -12,6 +12,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -19,19 +20,19 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - python >=3.11  # [build_platform != target_platform]
+    - python  # [build_platform != target_platform]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - cython  # [build_platform != target_platform]
     - numpy  # [build_platform != target_platform]
   host:
     - pip
-    - python >=3.11
+    - python
     - cython
     - setuptools >=18.0
     - numpy >=1.18.5
     - scikit-learn >=1.6.0
   run:
-    - python >=3.11
+    - python
     - numpy >=1.25.2
     - forestci ==0.6
     - pathos ==0.2.9
